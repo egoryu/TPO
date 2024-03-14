@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ModelTest {
-    static Universe universe;
     static Race commonHuman;
     static Race alpha;
     static Human human, target, man;
@@ -14,8 +13,6 @@ public class ModelTest {
     static Question question1, question2, question3;
     @BeforeEach
     public void initialize() {
-        universe = new Universe("Kek", null);
-
         commonHuman = new Race("обычные люди", "просто обычный человек");
         alpha = new Race("элита", "лучше чем другие");
 
@@ -34,9 +31,6 @@ public class ModelTest {
     @Test
     @DisplayName("Creature class")
     public void checkCreature() {
-        Human human = new Human("Егор", commonHuman), target = new Human("Миша", alpha);
-        HyperMind hyperMind = new HyperMind("Андрей", commonHuman), happyHyperMind = new HyperMind("Артем", alpha);
-
         Assertions.assertEquals("Егор", human.getName());
         Assertions.assertEquals("обычные люди", human.getRace().getName());
         Assertions.assertEquals(10, human.getStatus());
@@ -134,6 +128,7 @@ public class ModelTest {
     @Test
     @DisplayName("Universe class")
     public void checkUniverse() {
+        Universe universe = new Universe("Kek", null);
         Assertions.assertEquals("Kek", universe.getName());
         Assertions.assertNull(universe.getDisputes());
         Dispute dispute1 = new Dispute("Смысл жизни", List.of(human, hyperMind), List.of(question1)),
